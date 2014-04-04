@@ -7,13 +7,16 @@
 		<link rel = "stylesheet" href = "../css/main.css">
 		<script src = "../js/jquery.js"></script>
 		<script src = "../js/custom.js"></script>
+		<script type="text/javascript" src="../js/jscolor.js"></script>
 	</head>
 	<body>
 		<h1 class = "page-header">Elapse</h1>
 		<h3> Set up your day. </h3>
 		<div id = "main-wrapper">
 			<div id = "input">
-				<div id = "follower"></div>
+				<div id = "follower-container">
+					<div id = "follower"></div>
+				</div>
 				<input id = "slider" type="range" min="0" max="1" value="0" id="slider" step=".005" onchange = "updateFollower('follower')" onmouseup = "addScheduleElement()">
 			</div>
 			<table class = "table table-hover" id = "schedule">
@@ -26,7 +29,7 @@
 			    </thead>
 			    <tbody>
 			        <tr>
-				        <td>sdas</td>
+				        <td><input id = "colorss" onchange = "updateColor('follower')" class = "color" value = "230AFF"/></td>
 				        <td><input type = "text"></td>
 				        <td>Otto</td>
 			   		</tr>
@@ -38,6 +41,35 @@
 		{
 			document.getElementById(follower).style.width = document.getElementById("slider").value*100 + "%";
 		}
+		function updateColor(follower)
+		{
+			document.getElementById(follower).style.backgroundColor = "#" + document.getElementById("colorss").value;
+		}
 		</script>
+		<!--
+		function tableCreate(){
+var body=document.getElementsByTagName('body')[0];
+var tbl=document.createElement('table');
+tbl.style.width='100%';
+tbl.setAttribute('border','1');
+var tbdy=document.createElement('tbody');
+for(var i=0;i<3;i++){
+    var tr=document.createElement('tr');
+    for(var j=0;j<2;j++){
+        if(i==2 && j==1){
+                break
+                 } else {
+        var td=document.createElement('td');
+        td.appendChild(document.createTextNode('\u0020'))
+        i==1&&j==1?td.setAttribute('rowSpan','2'):null;
+        tr.appendChild(td)
+        }
+    }
+    tbdy.appendChild(tr);
+}
+tbl.appendChild(tbdy);
+body.appendChild(tbl)
+}
+		-->
 	</body>
 </html>
