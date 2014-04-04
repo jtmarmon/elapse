@@ -27,12 +27,13 @@
 			          	<th>Duration</th>
 			        </tr> 
 			    </thead>
-			    <tbody>
+			    <tbody id = "scheduler-body">
 			        <tr>
 				        <td><input id = "colorss" onchange = "updateColor('follower')" class = "color" value = "230AFF"/></td>
 				        <td><input type = "text"></td>
 				        <td>Otto</td>
 			   		</tr>
+
 			   </tbody>
 			</table>
 		</div>
@@ -44,6 +45,33 @@
 		function updateColor(follower)
 		{
 			document.getElementById(follower).style.backgroundColor = "#" + document.getElementById("colorss").value;
+		}
+		function addScheduleElement()
+		{
+			console.log("hi");
+			var scheduler = document.getElementById("scheduler-body");
+
+			var tr = document.createElement('tr');
+
+			var td1 = document.createElement('td');
+			var picker = document.createElement("input");
+			picker.className = "color";
+			picker.value = "230AFF";
+			td1.appendChild(picker);
+
+			var td2 = document.createElement("td");
+			var textInput = document.createElement("input");
+			textInput.type = "text";
+			td2.appendChild(textInput);
+
+			var td3 = document.createElement("td");
+			td3.value = "4 hrs 30 min";
+
+			tr.appendChild(td1);
+			tr.appendChild(td2);
+			tr.appendChild(td3);
+
+			scheduler.appendChild(tr);
 		}
 		</script>
 		<!--

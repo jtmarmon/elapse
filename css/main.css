@@ -39,8 +39,13 @@ body
 {
   margin-top: 5%;
 }
+#schedule input
+{
+  color:black;
+}
 input[type="range"] {
   -webkit-appearance: none !important;
+  -moz-appearance: none !important;
   height: 100%;
   background-color: #525252;
   width:100%;
@@ -53,6 +58,7 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb
 { 
   -webkit-appearance: none !important;
+  -moz-appearance: none !important;
   height:100%;
   width:9px;
   background-color: white;
