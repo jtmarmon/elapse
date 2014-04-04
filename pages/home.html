@@ -7,7 +7,8 @@
 		<link rel = "stylesheet" href = "../css/main.css">
 		<script src = "../js/jquery.js"></script>
 		<script src = "../js/custom.js"></script>
-		<script type="text/javascript" src="../js/jscolor.js"></script>
+		<link rel="stylesheet" media="screen" type="text/css" href="../colorpicker/css/colorpicker.css" />
+		<script type="text/javascript" src="../colorpicker/js/colorpicker.js"></script>
 	</head>
 	<body>
 		<h1 class = "page-header">Elapse</h1>
@@ -28,76 +29,12 @@
 			        </tr> 
 			    </thead>
 			    <tbody id = "scheduler-body">
-			        <tr>
-				        <td><input id = "colorss" onchange = "updateColor('follower')" class = "color" value = "230AFF"/></td>
-				        <td><input type = "text"></td>
-				        <td>Otto</td>
-			   		</tr>
-
 			   </tbody>
 			</table>
 		</div>
 		<script type = "text/javascript">
-		function updateFollower(follower)
-		{
-			document.getElementById(follower).style.width = document.getElementById("slider").value*100 + "%";
-		}
-		function updateColor(follower)
-		{
-			document.getElementById(follower).style.backgroundColor = "#" + document.getElementById("colorss").value;
-		}
-		function addScheduleElement()
-		{
-			console.log("hi");
-			var scheduler = document.getElementById("scheduler-body");
-
-			var tr = document.createElement('tr');
-
-			var td1 = document.createElement('td');
-			var picker = document.createElement("input");
-			picker.className = "color";
-			picker.value = "230AFF";
-			td1.appendChild(picker);
-
-			var td2 = document.createElement("td");
-			var textInput = document.createElement("input");
-			textInput.type = "text";
-			td2.appendChild(textInput);
-
-			var td3 = document.createElement("td");
-			td3.value = "4 hrs 30 min";
-
-			tr.appendChild(td1);
-			tr.appendChild(td2);
-			tr.appendChild(td3);
-
-			scheduler.appendChild(tr);
-		}
+		addScheduleElement();
+		
 		</script>
-		<!--
-		function tableCreate(){
-var body=document.getElementsByTagName('body')[0];
-var tbl=document.createElement('table');
-tbl.style.width='100%';
-tbl.setAttribute('border','1');
-var tbdy=document.createElement('tbody');
-for(var i=0;i<3;i++){
-    var tr=document.createElement('tr');
-    for(var j=0;j<2;j++){
-        if(i==2 && j==1){
-                break
-                 } else {
-        var td=document.createElement('td');
-        td.appendChild(document.createTextNode('\u0020'))
-        i==1&&j==1?td.setAttribute('rowSpan','2'):null;
-        tr.appendChild(td)
-        }
-    }
-    tbdy.appendChild(tr);
-}
-tbl.appendChild(tbdy);
-body.appendChild(tbl)
-}
-		-->
 	</body>
 </html>
