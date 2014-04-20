@@ -1,0 +1,30 @@
+<div id = "container">
+	<img src = "../img/elapse.png" id = "heading">
+		<h3> Set up your day. </h3>
+		<div id = "main-wrapper">
+			<table class = "table table-hover" id = "schedule">
+				<thead>
+			        <tr>
+			        	<th>Color</th>
+			          	<th style = "text-align:center">Description</th>
+			          	<th style = "text-align:center">Duration (hrs)	</th>
+			        </tr> 
+			    </thead>
+			    <tbody id = "scheduler-body">
+			    	<tr ng-repeat = "event in events">
+			    		<td> <div id = "picker{{event.index}}" class = "preview-circle" ng-style = "{backgroundColor: event.color}"> </div></td>
+			    		<td><input placeholder = "Write emails..." type = "text"  ng-update = "updateCircle()" ng-model = "event.title"></td>
+			    		<td>
+			    			<input  type = "text"  ng-update = "updateDuration()" class = "duration"> hrs
+			    			<input  type = "text"  ng-update = "updateDuration()" class = "duration"> mins
+			    		</td>
+			    	</tr>
+			   </tbody>
+			</table>
+			<span style="cursor:pointer">
+				<img src = "../img/plus.png" id = "plus-button" ng-click = "addScheduleElement()">
+			</span>
+			<button class = "btn btn-lg" id = "submit-button"> START </button>
+			
+		</div>
+</div>
