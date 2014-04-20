@@ -15,9 +15,10 @@ elapse.config(function($routeProvider)
 	.otherwise({redirectTo: '/'});
 });
 var instances = 0;
-elapse.controller('ScheduleController', function($scope){
+elapse.controller('ScheduleController', function($scope, $timeout){
 
 	$scope.events = []
+	
 	function initPicker(picker)
 		{
 			$(picker).ColorPicker(
@@ -33,12 +34,14 @@ elapse.controller('ScheduleController', function($scope){
 							return false;
 						},
 						onChange: function (hsb, hex, rgb) {
-							$(picker).css('backgroundColor', '#' + hex);
-							//picker4
-							var pickerIndex = $(picker).attr('id').substring(6, $(picker).attr('id').length);
-							console.log(pickerIndex);
-							$scope.events[pickerIndex].color = "#" + hex; 
-							$scope.$apply();
+							
+							$scope.$apply(function(){
+								$(picker).css('backgroundColor', '#' + hex);
+								//picker4
+								var pickerIndex = $(picker).attr('id').substring(6, $(picker).attr('id').length);
+								console.log(pickerIndex);
+								$scope.events[pickerIndex].color = "#" + hex; 
+							});
 						}
 					})
 				);
@@ -47,15 +50,16 @@ elapse.controller('ScheduleController', function($scope){
 	{
 		var newEvent = {title:"", color:"#FFF000",duration:"30 minutes", index:instances++}
 		$scope.events.push(newEvent);
-		$(".preview-circle").each(function(index,ele)
-		{
-			console.log(index);
-			initPicker(ele);
-		});
+		$timeout(function() {
+	      	$(".preview-circle").each(function(index,ele)
+	     	 {
+	     	 	console.log(index);
+	       	 	initPicker(ele);
+	    });
+	});
 
 	}
 	$(document).ready(function(){
-		console.log("sadasdadaa");
 		$scope.addScheduleElement();
 	});
 	
