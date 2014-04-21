@@ -1,13 +1,15 @@
-<div id = "container">
-	<img src = "../img/elapse.png" id = "heading">
-		<h3> Set up your day. </h3>
+<div id = "container" class = "ng-leave">
+	<div id ="above-table">
+		<img src = "../img/elapse.png" id = "heading">
+	</div>
+	<h3 style = "color:rgba(255,255,255,.8);"> Set up your day. </h3>
 		<div id = "main-wrapper">
 			<table class = "table table-hover" id = "schedule">
 				<thead>
 			        <tr>
 			        	<th>Color</th>
 			          	<th style = "text-align:center">Description</th>
-			          	<th style = "text-align:center">Duration (hrs)	</th>
+			          	<th style = "text-align:center">Duration</th>
 			          	<th> Index </th>
 			        </tr> 
 			    </thead>
@@ -16,8 +18,8 @@
 			    		<td> <div id = "picker{{event.index}}" class = "preview-circle" ng-style = "{backgroundColor: event.color}"> </div></td>
 			    		<td><input placeholder = "Write emails..." type = "text"  ng-update = "updateCircle()" ng-model = "event.title"></td>
 			    		<td>
-			    			<input placeholder = "hrs" type = "text"  ng-update = "updateDuration()" class = "duration">:
-			    			<input  placeholder = "mins" type = "text"  ng-update = "updateDuration()" class = "duration">
+			    			<input placeholder = "hrs" type = "text"  ng-model = "event.duration.hours" class = "duration">:
+			    			<input  placeholder = "mins" type = "text"  ng-model = "event.duration.minutes" class = "duration">
 			    		</td>
 			    		<td>
 			    			{{event.index}}
@@ -28,7 +30,7 @@
 			<span style="cursor:pointer">
 				<img src = "../img/plus.png" id = "plus-button" ng-click = "addScheduleElement()">
 			</span>
-			<button class = "btn btn-lg" id = "submit-button"> START </button>
+			 <button ng-click = "startTimers()" class = "clicky" id = "submit-button">Go</button>
 			
 		</div>
 </div>

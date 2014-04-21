@@ -1,4 +1,4 @@
-var elapse = angular.module("elapse", ['ngRoute']);
+var elapse = angular.module('elapse', ['ngRoute', 'ngAnimate']);
 elapse.config(function($routeProvider)
 {
 	$routeProvider
@@ -14,8 +14,19 @@ elapse.config(function($routeProvider)
 	})
 	.otherwise({redirectTo: '/'});
 });
+elapse.service('schedule', function(){
+	var data = [{}];
+	return{
+		getData: function(){
+			return data;
+		},
+		setData: function(newData){
+			data = newData;
+		}
+	};
+});
 var instances = 0;
-elapse.controller('ScheduleController', function($scope, $timeout){
+elapse.controller('ScheduleController', function($scope, $timeout, $location, schedule){
 
 	$scope.events = []
 	
@@ -26,7 +37,6 @@ elapse.controller('ScheduleController', function($scope, $timeout){
 						
 						onShow: function (colpkr) {
 							$(colpkr).fadeIn(500);
-							//need to simulate click here //what....for some reason this is an undefined function but still calls the select method WTF
 							return false;
 						},
 						onHide: function (colpkr) {
@@ -48,7 +58,16 @@ elapse.controller('ScheduleController', function($scope, $timeout){
 		}
 	$scope.addScheduleElement = function()
 	{
-		var newEvent = {title:"", color:"#FFF000",duration:"30 minutes", index:instances++}
+		var newEvent = {
+			title:"", 
+			color:"#FFF000",
+			duration:
+				{
+					hours:0,
+					minutes:30
+				},
+			index:instances++
+		}
 		$scope.events.push(newEvent);
 		$timeout(function() {
 	      	$(".preview-circle").each(function(index,ele)
@@ -59,13 +78,26 @@ elapse.controller('ScheduleController', function($scope, $timeout){
 	});
 
 	}
+	$scope.startTimers = function()
+	{
+	 	schedule.setData($scope.events);
+		$location.path('timers');
+	}
 	$(document).ready(function(){
 		$scope.addScheduleElement();
 	});
+
 	
-	function randomColor()
-	{
-		return '#'+Math.floor(Math.random()*16777215).toString(16);
+});
+//TIMER CONTROLLER
+
+
+elapse.controller('TimerController', function($scope, $timeout, $location, schedule){
+	$scope.events = schedule.getData();
+	$scope.currentEvent = $scope.events[0];
+	$scope.currentStyle = {
+		background:$scope.currentEvent.color
 	}
-	
+	console.log("execuer");
+
 });
