@@ -1,6 +1,6 @@
 html
 {
-  font-family:'Source Code Pro' !important;
+  font-family:'Open Sans' !important;
   font-size: 1.5em;
 
 }
@@ -160,4 +160,12 @@ button.clicky:focus {
     background-color: green;
     border: 0px solid green;
     margin: auto auto;
+}
+#timer-info
+{
+  text-align: center;
+}
+#timer-info h3
+{
+  display:inline-block;
 }
